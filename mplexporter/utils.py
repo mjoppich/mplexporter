@@ -238,6 +238,27 @@ def get_axis_properties(axis):
     # get axis visibility
     props['visible'] = axis.get_visible()
 
+    if axis.axis_name == 'x':
+        # Use tick values if appropriate
+        majorTicks = axis.get_major_ticks()
+
+        tickPositions = []
+        tickLabels = []
+        tickLabelsRotation = []
+
+        for tick in majorTicks:
+            tickPosition = tick.label.get_position()[0]
+            tickRotation = tick.label.get_rotation()
+            tickText = tick.label.get_text()
+
+            tickPositions.append(tickPosition)
+            tickLabels.append(tickText)
+            tickLabelsRotation.append(tickRotation)
+
+        props['tickvalues'] = tickPositions
+        props['tickformat'] = tickLabels
+        props['tickrotation'] = tickLabelsRotation
+
     return props
 
 

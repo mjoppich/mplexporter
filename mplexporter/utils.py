@@ -1,3 +1,4 @@
+
 """
 Utility Routines for Working with Matplotlib Objects
 ====================================================
@@ -17,6 +18,13 @@ from matplotlib.markers import MarkerStyle
 from matplotlib.transforms import Affine2D
 from matplotlib import ticker
 
+def color_to_hex(color):
+    """Convert matplotlib color code to hex color code"""
+    if color is None or colorConverter.to_rgba(color)[3] == 0:
+        return 'none'
+    else:
+        rgb = colorConverter.to_rgb(color)
+        return '#{0:02X}{1:02X}{2:02X}'.format(*(int(255 * c) for c in rgb))
 
 def export_color(color):
     """Convert matplotlib color code to hex color or RGBA color"""
